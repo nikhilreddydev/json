@@ -11,6 +11,7 @@ header. See also the [macro overview page](../../features/macros.md).
 
 - [**JSON_CATCH_USER(exception)**<br>**JSON_THROW_USER(exception)**<br>**JSON_TRY_USER**](json_throw_user.md) - control exceptions
 - [**JSON_DIAGNOSTICS**](json_diagnostics.md) - control extended diagnostics
+- [**JSON_DIAGNOSTIC_POSITIONS**](json_diagnostic_positions.md) - access positions of elements
 - [**JSON_NOEXCEPTION**](json_noexception.md) - switch off exceptions
 
 ## Language support
@@ -49,19 +50,32 @@ header. See also the [macro overview page](../../features/macros.md).
 
 ## Serialization/deserialization macros
 
-- Enum: [**NLOHMANN_JSON_SERIALIZE_ENUM**](nlohmann_json_serialize_enum.md)
-- Class/struct:
-    - Do you need to serialize private variables?
-        - Yes? Do you only need serialization?
-            - Yes? `NLOHMANN_DEFINE_TYPE_INTRUSIVE_ONLY_SERIALIZE`
-            - No? Allow deserialization of JSON values with missing values?
-                - Yes? `NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT`
-                - No? `NLOHMANN_DEFINE_TYPE_INTRUSIVE`
-        - No? Do you only need serialization?
-            - Yes? `NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE_ONLY_SERIALIZE`
-            - No? Allow deserialization of JSON values with missing values?
-                - Yes? `NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE_WITH_DEFAULT`
-                - No? `NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE`
+### Enums
+
+- [**NLOHMANN_JSON_SERIALIZE_ENUM**](nlohmann_json_serialize_enum.md) - serialize/deserialize an enum
+
+### Classes and structs
+
+| Need access to private members                                   | Need only de-serialization                                       | Allow missing values when de-serializing                         | macro                                                 |
+|------------------------------------------------------------------|------------------------------------------------------------------|------------------------------------------------------------------|-------------------------------------------------------|
+| <div style="color: green;">:octicons-check-circle-fill-24:</div> | <div style="color: green;">:octicons-check-circle-fill-24:</div> | <div style="color: grey;">:octicons-skip-fill-24:</div>          | **NLOHMANN_DEFINE_TYPE_INTRUSIVE_ONLY_SERIALIZE**     |
+| <div style="color: green;">:octicons-check-circle-fill-24:</div> | <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: green;">:octicons-check-circle-fill-24:</div> | **NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT**       |
+| <div style="color: green;">:octicons-check-circle-fill-24:</div> | <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: red;">:octicons-x-circle-fill-24:</div>       | **NLOHMANN_DEFINE_TYPE_INTRUSIVE**                    |
+| <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: green;">:octicons-check-circle-fill-24:</div> | <div style="color: grey;">:octicons-skip-fill-24:</div>          | **NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE_ONLY_SERIALIZE** |
+| <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: green;">:octicons-check-circle-fill-24:</div> | **NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE_WITH_DEFAULT**   |
+| <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: red;">:octicons-x-circle-fill-24:</div>       | **NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE**                |
+
+For _derived_ classes and structs, use the following macros
+
+| Need access to private members                                   | Need only de-serialization                                       | Allow missing values when de-serializing                         | macro                                                         |
+|------------------------------------------------------------------|------------------------------------------------------------------|------------------------------------------------------------------|---------------------------------------------------------------|
+| <div style="color: green;">:octicons-check-circle-fill-24:</div> | <div style="color: green;">:octicons-check-circle-fill-24:</div> | <div style="color: grey;">:octicons-skip-fill-24:</div>          | **NLOHMANN_DEFINE_DERIVED_TYPE_INTRUSIVE_ONLY_SERIALIZE**     |
+| <div style="color: green;">:octicons-check-circle-fill-24:</div> | <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: green;">:octicons-check-circle-fill-24:</div> | **NLOHMANN_DEFINE_DERIVED_TYPE_INTRUSIVE_WITH_DEFAULT**       |
+| <div style="color: green;">:octicons-check-circle-fill-24:</div> | <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: red;">:octicons-x-circle-fill-24:</div>       | **NLOHMANN_DEFINE_DERIVED_TYPE_INTRUSIVE**                    |
+| <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: green;">:octicons-check-circle-fill-24:</div> | <div style="color: grey;">:octicons-skip-fill-24:</div>          | **NLOHMANN_DEFINE_DERIVED_TYPE_NON_INTRUSIVE_ONLY_SERIALIZE** |
+| <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: green;">:octicons-check-circle-fill-24:</div> | **NLOHMANN_DEFINE_DERIVED_TYPE_NON_INTRUSIVE_WITH_DEFAULT**   |
+| <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: red;">:octicons-x-circle-fill-24:</div>       | <div style="color: red;">:octicons-x-circle-fill-24:</div>       | **NLOHMANN_DEFINE_DERIVED_TYPE_NON_INTRUSIVE**                |
+
 
 - [**NLOHMANN_DEFINE_TYPE_INTRUSIVE(type, member...)**<br>**NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(type, member...)**
 <br>**NLOHMANN_DEFINE_TYPE_INTRUSIVE_ONLY_SERIALIZE(type, member...)**][DefInt]
