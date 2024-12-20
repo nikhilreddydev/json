@@ -1165,6 +1165,7 @@ The following compilers are currently used in continuous integration at [AppVeyo
 | Apple Clang 15.0.0 (clang-1500.3.9.4); Xcode 15.4                                                      | macOS 14.7         | GitHub Actions |
 | Apple Clang 16.0.0 (clang-1600.0.26.3); Xcode 16.0                                                     | macOS 15.0.1       | GitHub Actions |
 | Apple Clang 16.0.0 (clang-1600.0.26.4); Xcode 16.1                                                     | macOS 15.0.1       | GitHub Actions |
+| Apple Clang 16.0.0 (clang-1600.0.26.6); Xcode 16.2                                                     | macOS 15.2         | GitHub Actions |
 | Clang 3.5.2                                                                                            | Ubuntu 22.04.1 LTS | GitHub Actions |
 | Clang 3.6.2                                                                                            | Ubuntu 22.04.1 LTS | GitHub Actions |
 | Clang 3.7.1                                                                                            | Ubuntu 22.04.1 LTS | GitHub Actions |

@@ -5,6 +5,8 @@ serve: style_check
 serve_dirty: style_check
 	venv/bin/mkdocs serve --dirtyreload
 
+# This target is used in the CI (ci_test_build_documentation).
+# This target is used by the docset Makefile.
 build: style_check
 	venv/bin/mkdocs build
 
@@ -16,6 +18,7 @@ publish:
 	venv/bin/mkdocs gh-deploy --clean --force
 
 # install a Python virtual environment
+# This target is used by the docset Makefile.
 install_venv: requirements.txt
 	python3 -mvenv venv
 	venv/bin/pip install --upgrade pip
