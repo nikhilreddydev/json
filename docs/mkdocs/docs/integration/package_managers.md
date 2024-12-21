@@ -92,8 +92,7 @@ The header can be used directly in your code or via CMake.
 
 If you are using the [Meson Build System](http://mesonbuild.com), add this source tree as a [meson subproject](https://mesonbuild.com/Subprojects.html#using-a-subproject). You may also use the
 `include.zip` published in this project's [Releases](https://github.com/nlohmann/json/releases) to reduce the size of the vendored source tree. Alternatively,
-you can get a wrap file by downloading it from [Meson WrapDB](https://mesonbuild.com/Wrapdb-projects.html), or simply
-use
+you can get a wrap file by downloading it from [Meson WrapDB](https://mesonbuild.com/Wrapdb-projects.html), or use
 
 ```shell
 meson wrap install nlohmann_json
@@ -102,7 +101,7 @@ meson wrap install nlohmann_json
 Please see the Meson project for any issues regarding the packaging.
 
 The provided `meson.build` can also be used as an alternative to CMake for installing `nlohmann_json` system-wide in
-which case a pkg-config file is installed. To use it, simply have your build system require the `nlohmann_json`
+which case a pkg-config file is installed. To use it, have your build system require the `nlohmann_json`
 pkg-config dependency. In Meson, it is preferred to use the
 [`dependency()`](https://mesonbuild.com/Reference-manual.html#dependency) object with a subproject fallback, rather than
 using the subproject directly.
@@ -316,15 +315,6 @@ Please see the  Hunter project for any issues regarding the packaging.
         cmake --build build
         ```
 
-## Buckaroo
-
-If you are using [Buckaroo](https://buckaroo.pm), you can install this library's module with `buckaroo add github.com/buckaroo-pm/nlohmann-json`. There is a demo repo [here](https://github.com/njlr/buckaroo-nholmann-json-example).
-
-!!! warning
-
-    The module is outdated as the respective [repository](https://github.com/buckaroo-pm/nlohmann-json) has not been
-    updated in years.
-
 ## vcpkg
 
 !!! abstract "Summary"
@@ -421,9 +411,16 @@ installed by adding the `-DJSON_MultipleHeaders=ON` flag (i.e., `cget install nl
         cmake --build build
         ```
 
-## CocoaPods
+## Swift Package Manager
 
-If you are using [CocoaPods](https://cocoapods.org), you can use the library by adding pod `"nlohmann_json", '~>3.1.2'` to your podfile (see [an example](https://bitbucket.org/benman/nlohmann_json-cocoapod/src/master/)). Please file issues [here](https://bitbucket.org/benman/nlohmann_json-cocoapod/issues?status=new&status=open).
+!!! abstract "Summary"
+
+    package: **`nlohmann/json`**
+
+    - :octicons-tag-24: Availalbe versions: current version and older versions
+    - :octicons-rocket-24: The package is updated with every release.
+    - :octicons-file-24: File issues at the [library issue tracker](https://github.com/nlohmann/json/issues)
+    - :octicons-question-24: [Xcode documentation](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app)
 
 ## NuGet
 
@@ -459,8 +456,8 @@ dotnet add package nlohmann.json
     recommends adding “native” and “nativepackage” tags to C++ NuGet packages to distinguish them, but even adding
     “native” to search query would still show many .NET-only packages in the list.
     
-    Nevertheless, after finding the package you want, just click on “Install” button and accept confirmation dialogs.
-    After the package is successfully added to the projects, you should be able to just build and execute the project
+    Nevertheless, after finding the package you want, click on “Install” button and accept confirmation dialogs.
+    After the package is successfully added to the projects, you should be able to build and execute the project
     without the need for making any more changes to build settings.
 
     !!! note
@@ -560,11 +557,52 @@ more information.
 
 ## Conda
 
-If you are using [conda](https://conda.io/), you can use the package [nlohmann_json](https://github.com/conda-forge/nlohmann_json-feedstock) from [conda-forge](https://conda-forge.org) executing `conda install -c conda-forge nlohmann_json`. Please file issues [here](https://github.com/conda-forge/nlohmann_json-feedstock/issues).
+!!! abstract "Summary"
+
+    package: [**`nlohmann_json`**](https://anaconda.org/conda-forge/nlohmann_json)
+
+    - :octicons-tag-24: Availalbe versions: current and previous versions
+    - :octicons-rocket-24: The package is updated with every release.
+    - :octicons-file-24: File issues at the [feedstock's issue tracker](https://github.com/conda-forge/nlohmann_json-feedstock/issues)
+    - :octicons-question-24: [Conda documentation](https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html)
+
+If you are using [conda](https://conda.io/), you can use the package
+[nlohmann_json](https://anaconda.org/conda-forge/nlohmann_json) from [conda-forge](https://conda-forge.org) executing
+
+```shell
+conda install -c conda-forge nlohmann_json
+```
+
+??? example
+
+    1. Create the following file:
+
+        ```cpp title="example.cpp"
+        --8<-- "integration/conda/example.cpp"
+        ```
+
+    2. Create and activate an anvironment "json`:
+
+        ```shell
+        conda create -n json
+        conda activate json
+        ```
+
+    3. Install the package:
+
+        ```shell
+        conda install -c conda-forge nlohmann_json
+        ```
+
+    4. Build the code:
+
+        ```shell
+        g++ -std=c++11 -I$(conda info --base)/envs/json/include example.cpp -o example
+        ```
 
 ## MSYS2
 
-If you are using [MSYS2](http://www.msys2.org/), you can use the [mingw-w64-nlohmann-json](https://packages.msys2.org/base/mingw-w64-nlohmann-json) package, just type `pacman -S mingw-w64-i686-nlohmann-json` or `pacman -S mingw-w64-x86_64-nlohmann-json` for installation. Please file issues [here](https://github.com/msys2/MINGW-packages/issues/new?title=%5Bnlohmann-json%5D) if you experience problems with the packages.
+If you are using [MSYS2](http://www.msys2.org/), you can use the [mingw-w64-nlohmann-json](https://packages.msys2.org/base/mingw-w64-nlohmann-json) package, type `pacman -S mingw-w64-i686-nlohmann-json` or `pacman -S mingw-w64-x86_64-nlohmann-json` for installation. Please file issues [here](https://github.com/msys2/MINGW-packages/issues/new?title=%5Bnlohmann-json%5D) if you experience problems with the packages.
 
 :material-update: The [package](https://packages.msys2.org/base/mingw-w64-nlohmann-json) is updated automatically.
 
@@ -634,16 +672,17 @@ to install the [nlohmann-json](https://ports.macports.org/port/nlohmann-json/) p
 
 ## build2
 
-If you are using [`build2`](https://build2.org), you can use the [`nlohmann-json`](https://cppget.org/nlohmann-json) package from the public repository <http://cppget.org> or directly from the [package's sources repository](https://github.com/build2-packaging/nlohmann-json). In your project's `manifest` file, just add `depends: nlohmann-json` (probably with some [version constraints](https://build2.org/build2-toolchain/doc/build2-toolchain-intro.xhtml#guide-add-remove-deps)). If you are not familiar with using dependencies in `build2`, [please read this introduction](https://build2.org/build2-toolchain/doc/build2-toolchain-intro.xhtml).
+If you are using [`build2`](https://build2.org), you can use the [`nlohmann-json`](https://cppget.org/nlohmann-json)
+package from the public repository <http://cppget.org> or directly from the
+[package's sources repository](https://github.com/build2-packaging/nlohmann-json). In your project's `manifest` file,
+add `depends: nlohmann-json` (probably with some [version constraints](https://build2.org/build2-toolchain/doc/build2-toolchain-intro.xhtml#guide-add-remove-deps)). If you are not familiar with using dependencies in `build2`, [please read this introduction](https://build2.org/build2-toolchain/doc/build2-toolchain-intro.xhtml).
 Please file issues [here](https://github.com/build2-packaging/nlohmann-json) if you experience problems with the packages.
 
 :material-update: The [package](https://cppget.org/nlohmann-json) is updated automatically.
 
-## wsjcpp
-
-If you are using [`wsjcpp`](http://wsjcpp.org), you can use the command `wsjcpp install "https://github.com/nlohmann/json:develop"` to get the latest version. Note you can change the branch ":develop" to an existing tag or another branch.
-
-:material-update: wsjcpp reads directly from the [GitHub repository](https://github.com/nlohmann/json) and is always up-to-date.
+```shell
+bdep new -t exe -l c++
+```
 
 ## CPM.cmake
 
@@ -688,3 +727,34 @@ CPMAddPackage("gh:nlohmann/json@3.11.3")
         cmake -S . -B build
         cmake --build build
         ```
+
+
+* * *
+
+## Buckaroo
+
+If you are using [Buckaroo](https://buckaroo.pm), you can install this library's module with `buckaroo add github.com/buckaroo-pm/nlohmann-json`. There is a demo repo [here](https://github.com/njlr/buckaroo-nholmann-json-example).
+
+!!! warning
+
+    The module is outdated as the respective [repository](https://github.com/buckaroo-pm/nlohmann-json) has not been
+    updated in years.
+
+## CocoaPods
+
+If you are using [CocoaPods](https://cocoapods.org), you can use the library by adding pod `"nlohmann_json", '~>3.1.2'`
+to your podfile (see [an example](https://bitbucket.org/benman/nlohmann_json-cocoapod/src/master/)). Please file issues
+[here](https://bitbucket.org/benman/nlohmann_json-cocoapod/issues?status=new&status=open).
+
+!!! warning
+
+    The module is outdated as the respective [pod](https://cocoapods.org/pods/nlohmann_json) has not been updated in years.
+
+## wsjcpp
+
+If you are using [`wsjcpp`](http://wsjcpp.org), you can use the command `wsjcpp install "https://github.com/nlohmann/json:develop"`
+to get the latest version. Note you can change the branch `:develop` to an existing tag or another branch.
+
+!!! warning
+
+    The package manager is outdated as the respective [repository](https://github.com/wsjcpp/wsjcpp) has not been updated in years.
