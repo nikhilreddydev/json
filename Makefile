@@ -282,3 +282,6 @@ reuse:
 	pipx run reuse annotate --recursive single_include include -tjson --license MIT --copyright "Niels Lohmann <https://nlohmann.me>" --year "2013-2024" --merge-copyrights
 	pipx run reuse annotate $(TESTS_SRCS) -tjson_support --license MIT --copyright "Niels Lohmann <https://nlohmann.me>" --year "2013-2024" --merge-copyrights
 	pipx run reuse lint
+
+spdx:
+	pipx run reuse spdx --output nlohmann_json.spdx --creator-person "Niels Lohmann" --add-license-concluded

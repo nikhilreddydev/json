@@ -40,3 +40,5 @@
 
 # Swift Package Manager build directory
 /.build
+
+nlohmann_json.spdx
