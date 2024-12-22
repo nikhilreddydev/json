@@ -36,6 +36,7 @@ When executed, this program should create output similar to
 
     formula: [**`nlohmann-json`**](https://formulae.brew.sh/formula/nlohmann-json)
 
+    - ![](https://img.shields.io/homebrew/v/nlohmann-json)
     - :octicons-tag-24: Availalbe versions: current version and development version (with `--HEAD` parameter)
     - :octicons-rocket-24: The formula is updated with every release.
     - :octicons-person-24: Maintainer: Niels Lohmann
@@ -194,6 +195,7 @@ other Bazel workspaces. To use the library you only need to depend on the target
 
     recipe: [**`nlohmann_json`**](https://conan.io/center/recipes/nlohmann_json)
 
+    - ![](https://img.shields.io/conan/v/nlohmann_json)
     - :octicons-tag-24: Availalbe versions: current version and older versions (see
       [Conan Center](https://conan.io/center/recipes/nlohmann_json))
     - :octicons-rocket-24: The package is update automatically via
@@ -239,6 +241,7 @@ requires, where `x.y.z` is the release version you want to use.
 
     package: [**`nlohmann-json`**](https://packages.spack.io/package.html?name=nlohmann-json)
 
+    - ![](https://img.shields.io/spack/v/nlohmann-json)
     - :octicons-tag-24: Availalbe versions: current version and older versions (see
       [Spack package](https://packages.spack.io/package.html?name=nlohmann-json))
     - :octicons-rocket-24: The package is updated with every release.
@@ -339,6 +342,7 @@ Please see the  Hunter project for any issues regarding the packaging.
 
     package: [**`nlohmann-json`**](https://github.com/Microsoft/vcpkg/tree/master/ports/nlohmann-json)
 
+    - ![](https://img.shields.io/vcpkg/v/nlohmann-json)
     - :octicons-tag-24: Availalbe versions: current version
     - :octicons-rocket-24: The package is updated with every release.
     - :octicons-file-24: File issues at the [vcpkg issue tracker](https://github.com/microsoft/vcpkg/issues)
@@ -579,6 +583,7 @@ more information.
 
     package: [**`nlohmann_json`**](https://anaconda.org/conda-forge/nlohmann_json)
 
+    - ![](https://img.shields.io/conda/v/conda-forge/nlohmann_json)
     - :octicons-tag-24: Availalbe versions: current and previous versions
     - :octicons-rocket-24: The package is updated with every release.
     - :octicons-file-24: File issues at the [feedstock's issue tracker](https://github.com/conda-forge/nlohmann_json-feedstock/issues)
@@ -763,6 +768,8 @@ If you are using [Buckaroo](https://buckaroo.pm), you can install this library's
 If you are using [CocoaPods](https://cocoapods.org), you can use the library by adding pod `"nlohmann_json", '~>3.1.2'`
 to your podfile (see [an example](https://bitbucket.org/benman/nlohmann_json-cocoapod/src/master/)). Please file issues
 [here](https://bitbucket.org/benman/nlohmann_json-cocoapod/issues?status=new&status=open).
+
+![](https://img.shields.io/cocoapods/v/nlohmann_json)
 
 !!! warning
 
