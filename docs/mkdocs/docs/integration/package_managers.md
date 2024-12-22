@@ -1,5 +1,23 @@
 # Package Managers
 
+<center>
+![Homebrew](../images/package_managers/homebrew.svg){: style="height:1em"}&nbsp;[**Homebrew**](#homebrew) `nlohmann-json` &emsp;
+![Meson](../images/package_managers/meson.svg){: style="height:1em"}&nbsp;[**Meson**](#meson) `nlohmann_json` &emsp;
+![Bazel](../images/package_managers/bazel.svg){: style="height:1em"}&nbsp;[**Bazel**](#bazel)<br>
+![Conan](../images/package_managers/conan.svg){: style="height:1em"}&nbsp;[**Conan**](#conan) `nlohmann_json` &emsp;
+![Spack](../images/package_managers/spack.svg){: style="height:1em"}&nbsp;[**Spack**](#spack) `nlohmann-json` &emsp;
+[**Hunter**](#hunter) `nlohmann_json`<br>
+![vcpkg](../images/package_managers/vcpkg.png){: style="height:1em"}&nbsp;[**vcpkg**](#vcpkg) `nlohmann-json` &emsp;
+[**cget**](#cget) `nlohmann/json` &emsp;
+![Swift Package Manager](../images/package_managers/swift.svg){: style="height:1em"}&nbsp;[**Swift Package Manager**](#swift-package-manager) `nlohmann/json`<br>
+![Nuget](../images/package_managers/nuget.svg){: style="height:1em"}&nbsp;[**NuGet**](#nuget) `nlohmann.json` &emsp;
+![Conda](../images/package_managers/conda.svg){: style="height:1em"}&nbsp;[**Conda**](#conda) `nlohmann_json` &emsp;
+![MacPorts](../images/package_managers/macports.svg){: style="height:1em"}&nbsp;[**MacPorts**](#macports) `nlohmann-json`<br>
+![cpm.cmake](../images/package_managers/cpm.png){: style="height:1em"}&nbsp;[**CPM.cmake**](#cpmcmake) `gh:nlohmann/json`
+</center>
+
+## Running example
+
 Throughout this page, we will describe how to compile the example file `example.cpp` below.
 
 ```cpp
