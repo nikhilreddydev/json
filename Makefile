@@ -44,15 +44,6 @@ all:
 
 
 ##########################################################################
-# documentation tests
-##########################################################################
-
-# compile example files and check output
-doctest:
-	$(MAKE) check_output -C docs
-
-
-##########################################################################
 # benchmarks
 ##########################################################################
 
@@ -215,7 +206,7 @@ ChangeLog.md:
 # Release files
 ##########################################################################
 
-# Create a tar.gz archive that contains sufficient files to be used as CMake project (e.g., using FetchContent). The
+# Create a tar.xz archive that contains sufficient files to be used as CMake project (e.g., using FetchContent). The
 # archive is created according to the advices of <https://reproducible-builds.org/docs/archives/>.
 json.tar.xz:
 	mkdir json

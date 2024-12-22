@@ -217,6 +217,12 @@ Further documentation:
 
 ### `BUILD.bazel`
 
+The file can be updated by calling
+
+```shell
+make BUILD.bazel
+```
+
 ### `meson.build`
 
 ### `Package.swift`
