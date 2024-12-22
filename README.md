@@ -1334,31 +1334,31 @@ endif()
 
 ### Package Managers
 
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/homebrew.svg" height="30">&nbsp;[**Homebrew**](https://json.nlohmann.me/integration/package_managers/#homebrew) `nlohmann-json`
+<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/homebrew.svg" height="20">&nbsp;[**Homebrew**](https://json.nlohmann.me/integration/package_managers/#homebrew) `nlohmann-json`
 &emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/meson.svg" height="30">&nbsp;[**Meson**](https://json.nlohmann.me/integration/package_managers/#meson) `nlohmann_json` &emsp;
+<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/meson.svg" height="20">&nbsp;[**Meson**](https://json.nlohmann.me/integration/package_managers/#meson) `nlohmann_json` &emsp;
 &emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/bazel.svg" height="30">&nbsp;[**Bazel**](https://json.nlohmann.me/integration/package_managers/#bazel) &emsp;
+<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/bazel.svg" height="20">&nbsp;[**Bazel**](https://json.nlohmann.me/integration/package_managers/#bazel) &emsp;
 &emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/conan.svg" height="30">&nbsp;[**Conan**](https://json.nlohmann.me/integration/package_managers/#conan) `nlohmann_json` &emsp;
+<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/conan.svg" height="20">&nbsp;[**Conan**](https://json.nlohmann.me/integration/package_managers/#conan) `nlohmann_json` &emsp;
 &emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/spack.svg" height="30">&nbsp;[**Spack**](https://json.nlohmann.me/integration/package_managers/#spack) `nlohmann-json` &emsp;
+<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/spack.svg" height="20">&nbsp;[**Spack**](https://json.nlohmann.me/integration/package_managers/#spack) `nlohmann-json` &emsp;
 &emsp;|&emsp;
 [**Hunter**](https://json.nlohmann.me/integration/package_managers/#hunter) `nlohmann_json` &emsp;
 &emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/vcpkg.png" height="30">&nbsp;[**vcpkg**](https://json.nlohmann.me/integration/package_managers/#vcpkg) `nlohmann-json` &emsp;
+<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/vcpkg.png" height="20">&nbsp;[**vcpkg**](https://json.nlohmann.me/integration/package_managers/#vcpkg) `nlohmann-json` &emsp;
 &emsp;|&emsp;
 [**cget**](https://json.nlohmann.me/integration/package_managers/#cget) `nlohmann/json` &emsp;
 &emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/swift.svg" height="30">&nbsp;[**Swift Package Manager**](https://json.nlohmann.me/integration/package_managers/#swift-package-manager) `nlohmann/json` &emsp;
+<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/swift.svg" height="20">&nbsp;[**Swift Package Manager**](https://json.nlohmann.me/integration/package_managers/#swift-package-manager) `nlohmann/json` &emsp;
 &emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/nuget.svg" height="30">&nbsp;[**Nuget**](https://json.nlohmann.me/integration/package_managers/#nuget) `nlohmann.json` &emsp;
+<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/nuget.svg" height="20">&nbsp;[**Nuget**](https://json.nlohmann.me/integration/package_managers/#nuget) `nlohmann.json` &emsp;
 &emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/conda.svg" height="30">&nbsp;[**Conda**](https://json.nlohmann.me/integration/package_managers/#conda) `nlohmann_json` &emsp;
+<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/conda.svg" height="20">&nbsp;[**Conda**](https://json.nlohmann.me/integration/package_managers/#conda) `nlohmann_json` &emsp;
 &emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/macports.svg" height="30">&nbsp;[**MacPorts**](https://json.nlohmann.me/integration/package_managers/#macports) `nlohmann-json` &emsp;
+<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/macports.svg" height="20">&nbsp;[**MacPorts**](https://json.nlohmann.me/integration/package_managers/#macports) `nlohmann-json` &emsp;
 &emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/cpm.png" height="30">&nbsp;[**cpm.cmake**](https://json.nlohmann.me/integration/package_managers/#cpmcmake) `gh:nlohmann/json` &emsp;
+<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/CPM.png" height="20">&nbsp;[**cpm.cmake**](https://json.nlohmann.me/integration/package_managers/#cpmcmake) `gh:nlohmann/json` &emsp;
 
 The library is part of many package managers. See the [**documentation**](https://json.nlohmann.me/integration/package_managers/) for detailed descriptions and examples.
 
