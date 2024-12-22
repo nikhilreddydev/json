@@ -6,7 +6,7 @@
 [![Windows](https://github.com/nlohmann/json/workflows/Windows/badge.svg)](https://github.com/nlohmann/json/actions?query=workflow%3AWindows)
 [![Coverage Status](https://coveralls.io/repos/github/nlohmann/json/badge.svg?branch=develop)](https://coveralls.io/github/nlohmann/json?branch=develop)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5550/badge.svg)](https://scan.coverity.com/projects/nlohmann-json)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e0d1a9d5d6fd46fcb655c4cb930bb3e8)](https://www.codacy.com/gh/nlohmann/json/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nlohmann/json&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e0d1a9d5d6fd46fcb655c4cb930bb3e8)](https://www.codacy.com/gh/nlohmann/json/dashboard?utm_source=github.com&amputm_medium=referral&amputm_content=nlohmann/json&amputm_campaign=Badge_Grade)
 [![Cirrus CI](https://api.cirrus-ci.com/github/nlohmann/json.svg)](https://cirrus-ci.com/github/nlohmann/json)
 [![Fuzzing Status](https://oss-fuzz-build-logs.storage.googleapis.com/badges/json.svg)](https://bugs.chromium.org/p/oss-fuzz/issues/list?sort=-opened&can=1&q=proj:json)
 [![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://wandbox.org/permlink/1mp10JbaANo6FUc7)
@@ -122,12 +122,12 @@ The `json` class provides an API for manipulating a JSON value. To create a `jso
 ```cpp
 #include <fstream>
 #include <nlohmann/json.hpp>
-using json = nlohmann::json;
+using json = nlohmann::json
 
 // ...
 
-std::ifstream f("example.json");
-json data = json::parse(f);
+std::ifstream f("example.json")
+json data = json::parse(f)
 ```
 
 ### Creating `json` objects from JSON literals
@@ -150,22 +150,22 @@ json ex1 = json::parse(R"(
     "pi": 3.141,
     "happy": true
   }
-)");
+)")
 
 // Using user-defined (raw) string literals
-using namespace nlohmann::literals;
+using namespace nlohmann::literals
 json ex2 = R"(
   {
     "pi": 3.141,
     "happy": true
   }
-)"_json;
+)"_json
 
 // Using initializer lists
 json ex3 = {
   {"happy", true},
   {"pi", 3.141},
-};
+}
 ```
 
 ### JSON as first-class data type
@@ -195,28 +195,28 @@ With this library, you could write:
 
 ```cpp
 // create an empty structure (null)
-json j;
+json j
 
 // add a number that is stored as double (note the implicit conversion of j to an object)
-j["pi"] = 3.141;
+j["pi"] = 3.141
 
 // add a Boolean that is stored as bool
-j["happy"] = true;
+j["happy"] = true
 
 // add a string that is stored as std::string
-j["name"] = "Niels";
+j["name"] = "Niels"
 
 // add another null object by passing nullptr
-j["nothing"] = nullptr;
+j["nothing"] = nullptr
 
 // add an object inside the object
-j["answer"]["everything"] = 42;
+j["answer"]["everything"] = 42
 
 // add an array that is stored as std::vector (using an initializer list)
-j["list"] = { 1, 0, 2 };
+j["list"] = { 1, 0, 2 }
 
 // add another object (using an initializer list of pairs)
-j["object"] = { {"currency", "USD"}, {"value", 42.99} };
+j["object"] = { {"currency", "USD"}, {"value", 42.99} }
 
 // instead, you could also write (which looks very similar to the JSON above)
 json j2 = {
@@ -232,21 +232,21 @@ json j2 = {
     {"currency", "USD"},
     {"value", 42.99}
   }}
-};
+}
 ```
 
 Note that in all these cases, you never need to "tell" the compiler which JSON value type you want to use. If you want to be explicit or express some edge cases, the functions [`json::array()`](https://json.nlohmann.me/api/basic_json/array/) and [`json::object()`](https://json.nlohmann.me/api/basic_json/object/) will help:
 
 ```cpp
 // a way to express the empty array []
-json empty_array_explicit = json::array();
+json empty_array_explicit = json::array()
 
 // ways to express the empty object {}
-json empty_object_implicit = json({});
-json empty_object_explicit = json::object();
+json empty_object_implicit = json({})
+json empty_object_explicit = json::object()
 
 // a way to express an _array_ of key/value pairs [["currency", "USD"], ["value", 42.99]]
-json array_not_object = json::array({ {"currency", "USD"}, {"value", 42.99} });
+json array_not_object = json::array({ {"currency", "USD"}, {"value", 42.99} })
 ```
 
 ### Serialization / Deserialization
@@ -257,7 +257,7 @@ You can create a JSON value (deserialization) by appending `_json` to a string l
 
 ```cpp
 // create object from string literal
-json j = "{ \"happy\": true, \"pi\": 3.141 }"_json;
+json j = "{ \"happy\": true, \"pi\": 3.141 }"_json
 
 // or even nicer with a raw string literal
 auto j2 = R"(
@@ -265,32 +265,32 @@ auto j2 = R"(
     "happy": true,
     "pi": 3.141
   }
-)"_json;
+)"_json
 ```
 
 Note that without appending the `_json` suffix, the passed string literal is not parsed, but just used as JSON string
 value. That is, `json j = "{ \"happy\": true, \"pi\": 3.141 }"` would just store the string
 `"{ "happy": true, "pi": 3.141 }"` rather than parsing the actual object.
 
-The string literal should be brought into scope with `using namespace nlohmann::literals;`
+The string literal should be brought into scope with `using namespace nlohmann::literals`
 (see [`json::parse()`](https://json.nlohmann.me/api/operator_literal_json/)).
 
 The above example can also be expressed explicitly using [`json::parse()`](https://json.nlohmann.me/api/basic_json/parse/):
 
 ```cpp
 // parse explicitly
-auto j3 = json::parse(R"({"happy": true, "pi": 3.141})");
+auto j3 = json::parse(R"({"happy": true, "pi": 3.141})")
 ```
 
 You can also get a string representation of a JSON value (serialize):
 
 ```cpp
 // explicit conversion to string
-std::string s = j.dump();    // {"happy":true,"pi":3.141}
+std::string s = j.dump()    // {"happy":true,"pi":3.141}
 
 // serialization with pretty printing
 // pass in the amount of spaces to indent
-std::cout << j.dump(4) << std::endl;
+std::cout << j.dump(4) << std::endl
 // {
 //     "happy": true,
 //     "pi": 3.141
@@ -301,21 +301,21 @@ Note the difference between serialization and assignment:
 
 ```cpp
 // store a string in a JSON value
-json j_string = "this is a string";
+json j_string = "this is a string"
 
 // retrieve the string value
-auto cpp_string = j_string.template get<std::string>();
+auto cpp_string = j_string.template get<std::string>()
 // retrieve the string value (alternative when a variable already exists)
-std::string cpp_string2;
-j_string.get_to(cpp_string2);
+std::string cpp_string2
+j_string.get_to(cpp_string2)
 
 // retrieve the serialized value (explicit JSON serialization)
-std::string serialized_string = j_string.dump();
+std::string serialized_string = j_string.dump()
 
 // output of original string
-std::cout << cpp_string << " == " << cpp_string2 << " == " << j_string.template get<std::string>() << '\n';
+std::cout << cpp_string << " == " << cpp_string2 << " == " << j_string.template get<std::string>() << '\n'
 // output of serialized value
-std::cout << j_string << " == " << serialized_string << std::endl;
+std::cout << j_string << " == " << serialized_string << std::endl
 ```
 
 [`.dump()`](https://json.nlohmann.me/api/basic_json/dump/) returns the originally stored string value.
@@ -328,45 +328,45 @@ You can also use streams to serialize and deserialize:
 
 ```cpp
 // deserialize from standard input
-json j;
-std::cin >> j;
+json j
+std::cin >> j
 
 // serialize to standard output
-std::cout << j;
+std::cout << j
 
 // the setw manipulator was overloaded to set the indentation for pretty printing
-std::cout << std::setw(4) << j << std::endl;
+std::cout << std::setw(4) << j << std::endl
 ```
 
 These operators work for any subclasses of `std::istream` or `std::ostream`. Here is the same example with files:
 
 ```cpp
 // read a JSON file
-std::ifstream i("file.json");
-json j;
-i >> j;
+std::ifstream i("file.json")
+json j
+i >> j
 
 // write prettified JSON to another file
-std::ofstream o("pretty.json");
-o << std::setw(4) << j << std::endl;
+std::ofstream o("pretty.json")
+o << std::setw(4) << j << std::endl
 ```
 
 Please note that setting the exception bit for `failbit` is inappropriate for this use case. It will result in program termination due to the `noexcept` specifier in use.
 
 #### Read from iterator range
 
-You can also parse JSON from an iterator range; that is, from any container accessible by iterators whose `value_type` is an integral type of 1, 2 or 4 bytes, which will be interpreted as UTF-8, UTF-16 and UTF-32 respectively. For instance, a `std::vector<std::uint8_t>`, or a `std::list<std::uint16_t>`:
+You can also parse JSON from an iterator range that is, from any container accessible by iterators whose `value_type` is an integral type of 1, 2 or 4 bytes, which will be interpreted as UTF-8, UTF-16 and UTF-32 respectively. For instance, a `std::vector<std::uint8_t>`, or a `std::list<std::uint16_t>`:
 
 ```cpp
-std::vector<std::uint8_t> v = {'t', 'r', 'u', 'e'};
-json j = json::parse(v.begin(), v.end());
+std::vector<std::uint8_t> v = {'t', 'r', 'u', 'e'}
+json j = json::parse(v.begin(), v.end())
 ```
 
 You may leave the iterators for the range [begin, end):
 
 ```cpp
-std::vector<std::uint8_t> v = {'t', 'r', 'u', 'e'};
-json j = json::parse(v);
+std::vector<std::uint8_t> v = {'t', 'r', 'u', 'e'}
+json j = json::parse(v)
 ```
 
 #### Custom data source
@@ -375,44 +375,44 @@ Since the parse function accepts arbitrary iterator ranges, you can provide your
 
 ```cpp
 struct MyContainer {
-  void advance();
-  const char& get_current();
-};
+  void advance()
+  const char& get_current()
+}
 
 struct MyIterator {
-    using difference_type = std::ptrdiff_t;
-    using value_type = char;
-    using pointer = const char*;
-    using reference = const char&;
-    using iterator_category = std::input_iterator_tag;
+    using difference_type = std::ptrdiff_t
+    using value_type = char
+    using pointer = const char*
+    using reference = const char&
+    using iterator_category = std::input_iterator_tag
 
     MyIterator& operator++() {
-        target->advance();
-        return *this;
+        target->advance()
+        return *this
     }
 
     bool operator!=(const MyIterator& rhs) const {
-        return rhs.target != target;
+        return rhs.target != target
     }
 
     reference operator*() const {
-        return target->get_current();
+        return target->get_current()
     }
 
-    MyContainer* target = nullptr;
-};
+    MyContainer* target = nullptr
+}
 
 MyIterator begin(MyContainer& tgt) {
-    return MyIterator{&tgt};
+    return MyIterator{&tgt}
 }
 
 MyIterator end(const MyContainer&) {
-    return {};
+    return {}
 }
 
 void foo() {
-    MyContainer c;
-    json j = json::parse(c);
+    MyContainer c
+    json j = json::parse(c)
 }
 ```
 
@@ -422,33 +422,33 @@ The library uses a SAX-like interface with the following functions:
 
 ```cpp
 // called when null is parsed
-bool null();
+bool null()
 
-// called when a boolean is parsed; value is passed
-bool boolean(bool val);
+// called when a boolean is parsed value is passed
+bool boolean(bool val)
 
-// called when a signed or unsigned integer number is parsed; value is passed
-bool number_integer(number_integer_t val);
-bool number_unsigned(number_unsigned_t val);
+// called when a signed or unsigned integer number is parsed value is passed
+bool number_integer(number_integer_t val)
+bool number_unsigned(number_unsigned_t val)
 
-// called when a floating-point number is parsed; value and original string is passed
-bool number_float(number_float_t val, const string_t& s);
+// called when a floating-point number is parsed value and original string is passed
+bool number_float(number_float_t val, const string_t& s)
 
-// called when a string is parsed; value is passed and can be safely moved away
-bool string(string_t& val);
-// called when a binary value is parsed; value is passed and can be safely moved away
-bool binary(binary_t& val);
+// called when a string is parsed value is passed and can be safely moved away
+bool string(string_t& val)
+// called when a binary value is parsed value is passed and can be safely moved away
+bool binary(binary_t& val)
 
 // called when an object or array begins or ends, resp. The number of elements is passed (or -1 if not known)
-bool start_object(std::size_t elements);
-bool end_object();
-bool start_array(std::size_t elements);
-bool end_array();
-// called when an object key is parsed; value is passed and can be safely moved away
-bool key(string_t& val);
+bool start_object(std::size_t elements)
+bool end_object()
+bool start_array(std::size_t elements)
+bool end_array()
+// called when an object key is parsed value is passed and can be safely moved away
+bool key(string_t& val)
 
-// called when a parse error occurs; byte position, the last token, and an exception is passed
-bool parse_error(std::size_t position, const std::string& last_token, const detail::exception& ex);
+// called when a parse error occurs byte position, the last token, and an exception is passed
+bool parse_error(std::size_t position, const std::string& last_token, const detail::exception& ex)
 ```
 
 The return value of each function determines whether parsing should proceed.
@@ -457,7 +457,7 @@ To implement your own SAX handler, proceed as follows:
 
 1. Implement the SAX interface in a class. You can use class `nlohmann::json_sax<json>` as base class, but you can also use any class where the functions described above are implemented and public.
 2. Create an object of your SAX interface class, e.g. `my_sax`.
-3. Call `bool json::sax_parse(input, &my_sax)`; where the first parameter can be any input like a string or an input stream and the second parameter is a pointer to your SAX interface.
+3. Call `bool json::sax_parse(input, &my_sax)` where the first parameter can be any input like a string or an input stream and the second parameter is a pointer to your SAX interface.
 
 Note the `sax_parse` function only returns a `bool` indicating the result of the last executed SAX event. It does not return a  `json` value - it is up to you to decide what to do with the SAX events. Furthermore, no exceptions are thrown in case of a parse error - it is up to you what to do with the exception object passed to your `parse_error` implementation. Internally, the SAX interface is used for the DOM parser (class `json_sax_dom_parser`) as well as the acceptor (`json_sax_acceptor`), see file [`json_sax.hpp`](https://github.com/nlohmann/json/blob/develop/include/nlohmann/detail/input/json_sax.hpp).
 
@@ -467,68 +467,68 @@ We designed the JSON class to behave just like an STL container. In fact, it sat
 
 ```cpp
 // create an array using push_back
-json j;
-j.push_back("foo");
-j.push_back(1);
-j.push_back(true);
+json j
+j.push_back("foo")
+j.push_back(1)
+j.push_back(true)
 
 // also use emplace_back
-j.emplace_back(1.78);
+j.emplace_back(1.78)
 
 // iterate the array
-for (json::iterator it = j.begin(); it != j.end(); ++it) {
-  std::cout << *it << '\n';
+for (json::iterator it = j.begin() it != j.end() ++it) {
+  std::cout << *it << '\n'
 }
 
 // range-based for
 for (auto& element : j) {
-  std::cout << element << '\n';
+  std::cout << element << '\n'
 }
 
 // getter/setter
-const auto tmp = j[0].template get<std::string>();
-j[1] = 42;
-bool foo = j.at(2);
+const auto tmp = j[0].template get<std::string>()
+j[1] = 42
+bool foo = j.at(2)
 
 // comparison
-j == R"(["foo", 1, true, 1.78])"_json;  // true
+j == R"(["foo", 1, true, 1.78])"_json  // true
 
 // other stuff
-j.size();     // 4 entries
-j.empty();    // false
-j.type();     // json::value_t::array
-j.clear();    // the array is empty again
+j.size()     // 4 entries
+j.empty()    // false
+j.type()     // json::value_t::array
+j.clear()    // the array is empty again
 
 // convenience type checkers
-j.is_null();
-j.is_boolean();
-j.is_number();
-j.is_object();
-j.is_array();
-j.is_string();
+j.is_null()
+j.is_boolean()
+j.is_number()
+j.is_object()
+j.is_array()
+j.is_string()
 
 // create an object
-json o;
-o["foo"] = 23;
-o["bar"] = false;
-o["baz"] = 3.141;
+json o
+o["foo"] = 23
+o["bar"] = false
+o["baz"] = 3.141
 
 // also use emplace
-o.emplace("weather", "sunny");
+o.emplace("weather", "sunny")
 
 // special iterator member functions for objects
-for (json::iterator it = o.begin(); it != o.end(); ++it) {
-  std::cout << it.key() << " : " << it.value() << "\n";
+for (json::iterator it = o.begin() it != o.end() ++it) {
+  std::cout << it.key() << " : " << it.value() << "\n"
 }
 
 // the same code as range for
 for (auto& el : o.items()) {
-  std::cout << el.key() << " : " << el.value() << "\n";
+  std::cout << el.key() << " : " << el.value() << "\n"
 }
 
 // even easier with structured bindings (C++17)
 for (auto& [key, value] : o.items()) {
-  std::cout << key << " : " << value << "\n";
+  std::cout << key << " : " << value << "\n"
 }
 
 // find an entry
@@ -542,11 +542,11 @@ if (o.find("foo") != o.end()) {
 }
 
 // or simpler using count()
-int foo_present = o.count("foo"); // 1
-int fob_present = o.count("fob"); // 0
+int foo_present = o.count("foo") // 1
+int fob_present = o.count("fob") // 0
 
 // delete an entry
-o.erase("foo");
+o.erase("foo")
 ```
 
 ### Conversion from STL containers
@@ -554,60 +554,60 @@ o.erase("foo");
 Any sequence container (`std::array`, `std::vector`, `std::deque`, `std::forward_list`, `std::list`) whose values can be used to construct JSON values (e.g., integers, floating point numbers, Booleans, string types, or again STL containers described in this section) can be used to create a JSON array. The same holds for similar associative containers (`std::set`, `std::multiset`, `std::unordered_set`, `std::unordered_multiset`), but in these cases the order of the elements of the array depends on how the elements are ordered in the respective STL container.
 
 ```cpp
-std::vector<int> c_vector {1, 2, 3, 4};
-json j_vec(c_vector);
+std::vector<int> c_vector {1, 2, 3, 4}
+json j_vec(c_vector)
 // [1, 2, 3, 4]
 
-std::deque<double> c_deque {1.2, 2.3, 3.4, 5.6};
-json j_deque(c_deque);
+std::deque<double> c_deque {1.2, 2.3, 3.4, 5.6}
+json j_deque(c_deque)
 // [1.2, 2.3, 3.4, 5.6]
 
-std::list<bool> c_list {true, true, false, true};
-json j_list(c_list);
+std::list<bool> c_list {true, true, false, true}
+json j_list(c_list)
 // [true, true, false, true]
 
-std::forward_list<int64_t> c_flist {12345678909876, 23456789098765, 34567890987654, 45678909876543};
-json j_flist(c_flist);
+std::forward_list<int64_t> c_flist {12345678909876, 23456789098765, 34567890987654, 45678909876543}
+json j_flist(c_flist)
 // [12345678909876, 23456789098765, 34567890987654, 45678909876543]
 
-std::array<unsigned long, 4> c_array {{1, 2, 3, 4}};
-json j_array(c_array);
+std::array<unsigned long, 4> c_array {{1, 2, 3, 4}}
+json j_array(c_array)
 // [1, 2, 3, 4]
 
-std::set<std::string> c_set {"one", "two", "three", "four", "one"};
-json j_set(c_set); // only one entry for "one" is used
+std::set<std::string> c_set {"one", "two", "three", "four", "one"}
+json j_set(c_set) // only one entry for "one" is used
 // ["four", "one", "three", "two"]
 
-std::unordered_set<std::string> c_uset {"one", "two", "three", "four", "one"};
-json j_uset(c_uset); // only one entry for "one" is used
+std::unordered_set<std::string> c_uset {"one", "two", "three", "four", "one"}
+json j_uset(c_uset) // only one entry for "one" is used
 // maybe ["two", "three", "four", "one"]
 
-std::multiset<std::string> c_mset {"one", "two", "one", "four"};
-json j_mset(c_mset); // both entries for "one" are used
+std::multiset<std::string> c_mset {"one", "two", "one", "four"}
+json j_mset(c_mset) // both entries for "one" are used
 // maybe ["one", "two", "one", "four"]
 
-std::unordered_multiset<std::string> c_umset {"one", "two", "one", "four"};
-json j_umset(c_umset); // both entries for "one" are used
+std::unordered_multiset<std::string> c_umset {"one", "two", "one", "four"}
+json j_umset(c_umset) // both entries for "one" are used
 // maybe ["one", "two", "one", "four"]
 ```
 
 Likewise, any associative key-value containers (`std::map`, `std::multimap`, `std::unordered_map`, `std::unordered_multimap`) whose keys can construct an `std::string` and whose values can be used to construct JSON values (see examples above) can be used to create a JSON object. Note that in case of multimaps only one key is used in the JSON object and the value depends on the internal order of the STL container.
 
 ```cpp
-std::map<std::string, int> c_map { {"one", 1}, {"two", 2}, {"three", 3} };
-json j_map(c_map);
+std::map<std::string, int> c_map { {"one", 1}, {"two", 2}, {"three", 3} }
+json j_map(c_map)
 // {"one": 1, "three": 3, "two": 2 }
 
-std::unordered_map<const char*, double> c_umap { {"one", 1.2}, {"two", 2.3}, {"three", 3.4} };
-json j_umap(c_umap);
+std::unordered_map<const char*, double> c_umap { {"one", 1.2}, {"two", 2.3}, {"three", 3.4} }
+json j_umap(c_umap)
 // {"one": 1.2, "two": 2.3, "three": 3.4}
 
-std::multimap<std::string, bool> c_mmap { {"one", true}, {"two", true}, {"three", false}, {"three", true} };
-json j_mmap(c_mmap); // only one entry for key "three" is used
+std::multimap<std::string, bool> c_mmap { {"one", true}, {"two", true}, {"three", false}, {"three", true} }
+json j_mmap(c_mmap) // only one entry for key "three" is used
 // maybe {"one": true, "two": true, "three": true}
 
-std::unordered_multimap<std::string, bool> c_ummap { {"one", true}, {"two", true}, {"three", false}, {"three", true} };
-json j_ummap(c_ummap); // only one entry for key "three" is used
+std::unordered_multimap<std::string, bool> c_ummap { {"one", true}, {"two", true}, {"three", false}, {"three", true} }
+json j_ummap(c_ummap) // only one entry for key "three" is used
 // maybe {"one": true, "two": true, "three": true}
 ```
 
@@ -620,10 +620,10 @@ The library supports **JSON Pointer** ([RFC 6901](https://tools.ietf.org/html/rf
 json j_original = R"({
   "baz": ["one", "two", "three"],
   "foo": "bar"
-})"_json;
+})"_json
 
 // access members with a JSON pointer (RFC 6901)
-j_original["/baz/1"_json_pointer];
+j_original["/baz/1"_json_pointer]
 // "two"
 
 // a JSON patch (RFC 6902)
@@ -631,17 +631,17 @@ json j_patch = R"([
   { "op": "replace", "path": "/baz", "value": "boo" },
   { "op": "add", "path": "/hello", "value": ["world"] },
   { "op": "remove", "path": "/foo"}
-])"_json;
+])"_json
 
 // apply the patch
-json j_result = j_original.patch(j_patch);
+json j_result = j_original.patch(j_patch)
 // {
 //    "baz": "boo",
 //    "hello": ["world"]
 // }
 
 // calculate a JSON patch from two JSON values
-json::diff(j_result, j_original);
+json::diff(j_result, j_original)
 // [
 //   { "op":" replace", "path": "/baz", "value": ["one", "two", "three"] },
 //   { "op": "remove","path": "/hello" },
@@ -661,7 +661,7 @@ json j_document = R"({
     "d": "e",
     "f": "g"
   }
-})"_json;
+})"_json
 
 // a patch
 json j_patch = R"({
@@ -669,10 +669,10 @@ json j_patch = R"({
   "c": {
     "f": null
   }
-})"_json;
+})"_json
 
 // apply the patch
-j_document.merge_patch(j_patch);
+j_document.merge_patch(j_patch)
 // {
 //  "a": "z",
 //  "c": {
@@ -691,31 +691,31 @@ You can switch off implicit conversions by defining `JSON_USE_IMPLICIT_CONVERSIO
 
 ```cpp
 // strings
-std::string s1 = "Hello, world!";
-json js = s1;
-auto s2 = js.template get<std::string>();
+std::string s1 = "Hello, world!"
+json js = s1
+auto s2 = js.template get<std::string>()
 // NOT RECOMMENDED
-std::string s3 = js;
-std::string s4;
-s4 = js;
+std::string s3 = js
+std::string s4
+s4 = js
 
 // Booleans
-bool b1 = true;
-json jb = b1;
-auto b2 = jb.template get<bool>();
+bool b1 = true
+json jb = b1
+auto b2 = jb.template get<bool>()
 // NOT RECOMMENDED
-bool b3 = jb;
-bool b4;
-b4 = jb;
+bool b3 = jb
+bool b4
+b4 = jb
 
 // numbers
-int i = 42;
-json jn = i;
-auto f = jn.template get<double>();
+int i = 42
+json jn = i
+auto f = jn.template get<double>()
 // NOT RECOMMENDED
-double f2 = jb;
-double f3;
-f3 = jb;
+double f2 = jb
+double f3
+f3 = jb
 
 // etc.
 ```
@@ -723,9 +723,9 @@ f3 = jb;
 Note that `char` types are not automatically converted to JSON strings, but to integer numbers. A conversion to a string must be specified explicitly:
 
 ```cpp
-char ch = 'A';                       // ASCII value 65
-json j_default = ch;                 // stores integer number 65
-json j_string = std::string(1, ch);  // stores string "A"
+char ch = 'A'                       // ASCII value 65
+json j_default = ch                 // stores integer number 65
+json j_string = std::string(1, ch)  // stores string "A"
 ```
 
 ### Arbitrary types conversions
@@ -736,19 +736,19 @@ Every type can be serialized in JSON, not just STL containers and scalar types. 
 namespace ns {
     // a simple struct to model a person
     struct person {
-        std::string name;
-        std::string address;
-        int age;
-    };
+        std::string name
+        std::string address
+        int age
+    }
 }
 
-ns::person p = {"Ned Flanders", "744 Evergreen Terrace", 60};
+ns::person p = {"Ned Flanders", "744 Evergreen Terrace", 60}
 
 // convert to JSON: copy each value into the JSON object
-json j;
-j["name"] = p.name;
-j["address"] = p.address;
-j["age"] = p.age;
+json j
+j["name"] = p.name
+j["address"] = p.address
+j["age"] = p.age
 
 // ...
 
@@ -757,26 +757,26 @@ ns::person p {
     j["name"].template get<std::string>(),
     j["address"].template get<std::string>(),
     j["age"].template get<int>()
-};
+}
 ```
 
 It works, but that's quite a lot of boilerplate... Fortunately, there's a better way:
 
 ```cpp
 // create a person
-ns::person p {"Ned Flanders", "744 Evergreen Terrace", 60};
+ns::person p {"Ned Flanders", "744 Evergreen Terrace", 60}
 
 // conversion: person -> json
-json j = p;
+json j = p
 
-std::cout << j << std::endl;
+std::cout << j << std::endl
 // {"address":"744 Evergreen Terrace","age":60,"name":"Ned Flanders"}
 
 // conversion: json -> person
-auto p2 = j.template get<ns::person>();
+auto p2 = j.template get<ns::person>()
 
 // that's it
-assert(p == p2);
+assert(p == p2)
 ```
 
 #### Basic usage
@@ -784,17 +784,17 @@ assert(p == p2);
 To make this work with one of your types, you only need to provide two functions:
 
 ```cpp
-using json = nlohmann::json;
+using json = nlohmann::json
 
 namespace ns {
     void to_json(json& j, const person& p) {
-        j = json{{"name", p.name}, {"address", p.address}, {"age", p.age}};
+        j = json{{"name", p.name}, {"address", p.address}, {"age", p.age}}
     }
 
     void from_json(const json& j, person& p) {
-        j.at("name").get_to(p.name);
-        j.at("address").get_to(p.address);
-        j.at("age").get_to(p.age);
+        j.at("name").get_to(p.name)
+        j.at("address").get_to(p.address)
+        j.at("age").get_to(p.age)
     }
 } // namespace ns
 ```
@@ -837,13 +837,13 @@ Here is an example with private members, where `NLOHMANN_DEFINE_TYPE_INTRUSIVE` 
 namespace ns {
     class address {
       private:
-        std::string street;
-        int housenumber;
-        int postcode;
+        std::string street
+        int housenumber
+        int postcode
 
       public:
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(address, street, housenumber, postcode)
-    };
+    }
 }
 ```
 
@@ -866,7 +866,7 @@ struct adl_serializer {
     static void from_json(const json& j, T& value) {
         // same thing, but with the "from_json" method
     }
-};
+}
 ```
 
 This serializer works fine when you have control over the type's namespace. However, what about `boost::optional` or `std::filesystem::path` (C++17)? Hijacking the `boost` namespace is pretty bad, and it's illegal to add something other than template specializations to `std`...
@@ -880,22 +880,22 @@ namespace nlohmann {
     struct adl_serializer<boost::optional<T>> {
         static void to_json(json& j, const boost::optional<T>& opt) {
             if (opt == boost::none) {
-                j = nullptr;
+                j = nullptr
             } else {
-              j = *opt; // this will call adl_serializer<T>::to_json which will
+              j = *opt // this will call adl_serializer<T>::to_json which will
                         // find the free function to_json in T's namespace!
             }
         }
 
         static void from_json(const json& j, boost::optional<T>& opt) {
             if (j.is_null()) {
-                opt = boost::none;
+                opt = boost::none
             } else {
-                opt = j.template get<T>(); // same as above, but with
+                opt = j.template get<T>() // same as above, but with
                                            // adl_serializer<T>::from_json
             }
         }
-    };
+    }
 }
 ```
 
@@ -905,13 +905,13 @@ There is a way, if your type is [MoveConstructible](https://en.cppreference.com/
 
 ```cpp
 struct move_only_type {
-    move_only_type() = delete;
+    move_only_type() = delete
     move_only_type(int ii): i(ii) {}
-    move_only_type(const move_only_type&) = delete;
-    move_only_type(move_only_type&&) = default;
+    move_only_type(const move_only_type&) = delete
+    move_only_type(move_only_type&&) = default
 
-    int i;
-};
+    int i
+}
 
 namespace nlohmann {
     template <>
@@ -919,16 +919,16 @@ namespace nlohmann {
         // note: the return type is no longer 'void', and the method only takes
         // one argument
         static move_only_type from_json(const json& j) {
-            return {j.template get<int>()};
+            return {j.template get<int>()}
         }
 
         // Here's the catch! You must provide a to_json method! Otherwise, you
         // will not be able to convert move_only_type to json, since you fully
         // specialized adl_serializer on that type
         static void to_json(json& j, move_only_type t) {
-            j = t.i;
+            j = t.i
         }
-    };
+    }
 }
 ```
 
@@ -952,18 +952,18 @@ struct less_than_32_serializer {
     template <typename BasicJsonType>
     static void to_json(BasicJsonType& j, T value) {
         // we want to use ADL, and call the correct to_json overload
-        using nlohmann::to_json; // this method is called by adl_serializer,
+        using nlohmann::to_json // this method is called by adl_serializer,
                                  // this is where the magic happens
-        to_json(j, value);
+        to_json(j, value)
     }
 
     template <typename BasicJsonType>
     static void from_json(const BasicJsonType& j, T& value) {
         // same thing here
-        using nlohmann::from_json;
-        from_json(j, value);
+        using nlohmann::from_json
+        from_json(j, value)
     }
-};
+}
 ```
 
 Be **very** careful when reimplementing your serializer, you can stack overflow if you don't pay attention:
@@ -974,18 +974,18 @@ struct bad_serializer
 {
     template <typename BasicJsonType>
     static void to_json(BasicJsonType& j, const T& value) {
-      // this calls BasicJsonType::json_serializer<T>::to_json(j, value);
+      // this calls BasicJsonType::json_serializer<T>::to_json(j, value)
       // if BasicJsonType::json_serializer == bad_serializer ... oops!
-      j = value;
+      j = value
     }
 
     template <typename BasicJsonType>
     static void to_json(const BasicJsonType& j, T& value) {
-      // this calls BasicJsonType::json_serializer<T>::from_json(j, value);
+      // this calls BasicJsonType::json_serializer<T>::from_json(j, value)
       // if BasicJsonType::json_serializer == bad_serializer ... oops!
-      value = j.template get<T>(); // oops!
+      value = j.template get<T>() // oops!
     }
-};
+}
 ```
 
 ### Specializing enum conversion
@@ -1001,7 +1001,7 @@ enum TaskState {
     TS_RUNNING,
     TS_COMPLETED,
     TS_INVALID=-1,
-};
+}
 
 // map TaskState values to JSON as strings
 NLOHMANN_JSON_SERIALIZE_ENUM( TaskState, {
@@ -1018,16 +1018,16 @@ The `NLOHMANN_JSON_SERIALIZE_ENUM()` macro declares a set of `to_json()` / `from
 
 ```cpp
 // enum to JSON as string
-json j = TS_STOPPED;
-assert(j == "stopped");
+json j = TS_STOPPED
+assert(j == "stopped")
 
 // json string to enum
-json j3 = "running";
-assert(j3.template get<TaskState>() == TS_RUNNING);
+json j3 = "running"
+assert(j3.template get<TaskState>() == TS_RUNNING)
 
 // undefined json value to enum (where the first map entry above is the default)
-json jPi = 3.14;
-assert(jPi.template get<TaskState>() == TS_INVALID );
+json jPi = 3.14
+assert(jPi.template get<TaskState>() == TS_INVALID )
 ```
 
 Just as in [Arbitrary Type Conversions](#arbitrary-types-conversions) above,
@@ -1046,69 +1046,69 @@ Though JSON is a ubiquitous data format, it is not a very compact format suitabl
 
 ```cpp
 // create a JSON value
-json j = R"({"compact": true, "schema": 0})"_json;
+json j = R"({"compact": true, "schema": 0})"_json
 
 // serialize to BSON
-std::vector<std::uint8_t> v_bson = json::to_bson(j);
+std::vector<std::uint8_t> v_bson = json::to_bson(j)
 
 // 0x1B, 0x00, 0x00, 0x00, 0x08, 0x63, 0x6F, 0x6D, 0x70, 0x61, 0x63, 0x74, 0x00, 0x01, 0x10, 0x73, 0x63, 0x68, 0x65, 0x6D, 0x61, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 
 // roundtrip
-json j_from_bson = json::from_bson(v_bson);
+json j_from_bson = json::from_bson(v_bson)
 
 // serialize to CBOR
-std::vector<std::uint8_t> v_cbor = json::to_cbor(j);
+std::vector<std::uint8_t> v_cbor = json::to_cbor(j)
 
 // 0xA2, 0x67, 0x63, 0x6F, 0x6D, 0x70, 0x61, 0x63, 0x74, 0xF5, 0x66, 0x73, 0x63, 0x68, 0x65, 0x6D, 0x61, 0x00
 
 // roundtrip
-json j_from_cbor = json::from_cbor(v_cbor);
+json j_from_cbor = json::from_cbor(v_cbor)
 
 // serialize to MessagePack
-std::vector<std::uint8_t> v_msgpack = json::to_msgpack(j);
+std::vector<std::uint8_t> v_msgpack = json::to_msgpack(j)
 
 // 0x82, 0xA7, 0x63, 0x6F, 0x6D, 0x70, 0x61, 0x63, 0x74, 0xC3, 0xA6, 0x73, 0x63, 0x68, 0x65, 0x6D, 0x61, 0x00
 
 // roundtrip
-json j_from_msgpack = json::from_msgpack(v_msgpack);
+json j_from_msgpack = json::from_msgpack(v_msgpack)
 
 // serialize to UBJSON
-std::vector<std::uint8_t> v_ubjson = json::to_ubjson(j);
+std::vector<std::uint8_t> v_ubjson = json::to_ubjson(j)
 
 // 0x7B, 0x69, 0x07, 0x63, 0x6F, 0x6D, 0x70, 0x61, 0x63, 0x74, 0x54, 0x69, 0x06, 0x73, 0x63, 0x68, 0x65, 0x6D, 0x61, 0x69, 0x00, 0x7D
 
 // roundtrip
-json j_from_ubjson = json::from_ubjson(v_ubjson);
+json j_from_ubjson = json::from_ubjson(v_ubjson)
 ```
 
 The library also supports binary types from BSON, CBOR (byte strings), and MessagePack (bin, ext, fixext). They are stored by default as `std::vector<std::uint8_t>` to be processed outside the library.
 
 ```cpp
 // CBOR byte string with payload 0xCAFE
-std::vector<std::uint8_t> v = {0x42, 0xCA, 0xFE};
+std::vector<std::uint8_t> v = {0x42, 0xCA, 0xFE}
 
 // read value
-json j = json::from_cbor(v);
+json j = json::from_cbor(v)
 
 // the JSON value has type binary
-j.is_binary(); // true
+j.is_binary() // true
 
 // get reference to stored binary value
-auto& binary = j.get_binary();
+auto& binary = j.get_binary()
 
 // the binary value has no subtype (CBOR has no binary subtypes)
-binary.has_subtype(); // false
+binary.has_subtype() // false
 
 // access std::vector<std::uint8_t> member functions
-binary.size(); // 2
-binary[0]; // 0xCA
-binary[1]; // 0xFE
+binary.size() // 2
+binary[0] // 0xCA
+binary[1] // 0xFE
 
 // set subtype to 0x10
-binary.set_subtype(0x10);
+binary.set_subtype(0x10)
 
 // serialize to MessagePack
-auto cbor = json::to_msgpack(j); // 0xD5 (fixext2), 0x10, 0xCA, 0xFE
+auto cbor = json::to_msgpack(j) // 0xD5 (fixext2), 0x10, 0xCA, 0xFE
 ```
 
 ## Customers
@@ -1154,18 +1154,18 @@ The following compilers are currently used in continuous integration at [AppVeyo
 
 | Compiler                                                                                               | Operating System   | CI Provider    |
 |--------------------------------------------------------------------------------------------------------|--------------------|----------------|
-| Apple Clang 14.0.0 (clang-1400.0.29.202); Xcode 14.1                                                   | macOS 13.7         | GitHub Actions |
-| Apple Clang 14.0.0 (clang-1400.0.29.202); Xcode 14.2                                                   | macOS 13.7         | GitHub Actions |
-| Apple Clang 14.0.3 (clang-1403.0.22.14.1); Xcode 14.3                                                  | macOS 13.7         | GitHub Actions |
-| Apple Clang 14.0.3 (clang-1403.0.22.14.1); Xcode 14.3.1                                                | macOS 13.7.1       | GitHub Actions |
-| Apple Clang 15.0.0 (clang-1500.0.40.1); Xcode 15.0.1                                                   | macOS 13.7         | GitHub Actions |
-| Apple Clang 15.0.0 (clang-1500.1.0.2.5); Xcode 15.1                                                    | macOS 13.7         | GitHub Actions |
-| Apple Clang 15.0.0 (clang-1500.1.0.2.5); Xcode 15.2                                                    | macOS 13.7         | GitHub Actions |
-| Apple Clang 15.0.0 (clang-1500.3.9.4); Xcode 15.3                                                      | macOS 14.7         | GitHub Actions |
-| Apple Clang 15.0.0 (clang-1500.3.9.4); Xcode 15.4                                                      | macOS 14.7         | GitHub Actions |
-| Apple Clang 16.0.0 (clang-1600.0.26.3); Xcode 16.0                                                     | macOS 15.0.1       | GitHub Actions |
-| Apple Clang 16.0.0 (clang-1600.0.26.4); Xcode 16.1                                                     | macOS 15.0.1       | GitHub Actions |
-| Apple Clang 16.0.0 (clang-1600.0.26.6); Xcode 16.2                                                     | macOS 15.2         | GitHub Actions |
+| Apple Clang 14.0.0 (clang-1400.0.29.202) Xcode 14.1                                                   | macOS 13.7         | GitHub Actions |
+| Apple Clang 14.0.0 (clang-1400.0.29.202) Xcode 14.2                                                   | macOS 13.7         | GitHub Actions |
+| Apple Clang 14.0.3 (clang-1403.0.22.14.1) Xcode 14.3                                                  | macOS 13.7         | GitHub Actions |
+| Apple Clang 14.0.3 (clang-1403.0.22.14.1) Xcode 14.3.1                                                | macOS 13.7.1       | GitHub Actions |
+| Apple Clang 15.0.0 (clang-1500.0.40.1) Xcode 15.0.1                                                   | macOS 13.7         | GitHub Actions |
+| Apple Clang 15.0.0 (clang-1500.1.0.2.5) Xcode 15.1                                                    | macOS 13.7         | GitHub Actions |
+| Apple Clang 15.0.0 (clang-1500.1.0.2.5) Xcode 15.2                                                    | macOS 13.7         | GitHub Actions |
+| Apple Clang 15.0.0 (clang-1500.3.9.4) Xcode 15.3                                                      | macOS 14.7         | GitHub Actions |
+| Apple Clang 15.0.0 (clang-1500.3.9.4) Xcode 15.4                                                      | macOS 14.7         | GitHub Actions |
+| Apple Clang 16.0.0 (clang-1600.0.26.3) Xcode 16.0                                                     | macOS 15.0.1       | GitHub Actions |
+| Apple Clang 16.0.0 (clang-1600.0.26.4) Xcode 16.1                                                     | macOS 15.0.1       | GitHub Actions |
+| Apple Clang 16.0.0 (clang-1600.0.26.6) Xcode 16.2                                                     | macOS 15.2         | GitHub Actions |
 | Clang 3.5.2                                                                                            | Ubuntu 22.04.1 LTS | GitHub Actions |
 | Clang 3.6.2                                                                                            | Ubuntu 22.04.1 LTS | GitHub Actions |
 | Clang 3.7.1                                                                                            | Ubuntu 22.04.1 LTS | GitHub Actions |
@@ -1229,7 +1229,7 @@ The following compilers are currently used in continuous integration at [AppVeyo
 #include <nlohmann/json.hpp>
 
 // for convenience
-using json = nlohmann::json;
+using json = nlohmann::json
 ```
 
 to the files you want to process JSON and set the necessary switches to enable C++11 (e.g., `-std=c++11` for GCC and Clang).
@@ -1334,31 +1334,21 @@ endif()
 
 ### Package Managers
 
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/homebrew.svg" height="20">&nbsp;[**Homebrew**](https://json.nlohmann.me/integration/package_managers/#homebrew) `nlohmann-json`
-&emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/meson.svg" height="20">&nbsp;[**Meson**](https://json.nlohmann.me/integration/package_managers/#meson) `nlohmann_json` &emsp;
-&emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/bazel.svg" height="20">&nbsp;[**Bazel**](https://json.nlohmann.me/integration/package_managers/#bazel) &emsp;
-&emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/conan.svg" height="20">&nbsp;[**Conan**](https://json.nlohmann.me/integration/package_managers/#conan) `nlohmann_json` &emsp;
-&emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/spack.svg" height="20">&nbsp;[**Spack**](https://json.nlohmann.me/integration/package_managers/#spack) `nlohmann-json` &emsp;
-&emsp;|&emsp;
-[**Hunter**](https://json.nlohmann.me/integration/package_managers/#hunter) `nlohmann_json` &emsp;
-&emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/vcpkg.png" height="20">&nbsp;[**vcpkg**](https://json.nlohmann.me/integration/package_managers/#vcpkg) `nlohmann-json` &emsp;
-&emsp;|&emsp;
-[**cget**](https://json.nlohmann.me/integration/package_managers/#cget) `nlohmann/json` &emsp;
-&emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/swift.svg" height="20">&nbsp;[**Swift Package Manager**](https://json.nlohmann.me/integration/package_managers/#swift-package-manager) `nlohmann/json` &emsp;
-&emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/nuget.svg" height="20">&nbsp;[**Nuget**](https://json.nlohmann.me/integration/package_managers/#nuget) `nlohmann.json` &emsp;
-&emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/conda.svg" height="20">&nbsp;[**Conda**](https://json.nlohmann.me/integration/package_managers/#conda) `nlohmann_json` &emsp;
-&emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/macports.svg" height="20">&nbsp;[**MacPorts**](https://json.nlohmann.me/integration/package_managers/#macports) `nlohmann-json` &emsp;
-&emsp;|&emsp;
-<img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/CPM.png" height="20">&nbsp;[**cpm.cmake**](https://json.nlohmann.me/integration/package_managers/#cpmcmake) `gh:nlohmann/json` &emsp;
+Use your favorite package manager to use the library.
+
+- <img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/homebrew.svg" height="20">&nbsp;[**Homebrew**](https://json.nlohmann.me/integration/package_managers/#homebrew) `nlohmann-json`
+- <img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/meson.svg" height="20">&nbsp;[**Meson**](https://json.nlohmann.me/integration/package_managers/#meson) `nlohmann_json`
+- <img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/bazel.svg" height="20">&nbsp;[**Bazel**](https://json.nlohmann.me/integration/package_managers/#bazel) (use `http_archive`, `git_repository`, or `local_repository`)
+- <img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/conan.svg" height="20">&nbsp;[**Conan**](https://json.nlohmann.me/integration/package_managers/#conan) `nlohmann_json`
+- <img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/spack.svg" height="20">&nbsp;[**Spack**](https://json.nlohmann.me/integration/package_managers/#spack) `nlohmann-json`
+- [**Hunter**](https://json.nlohmann.me/integration/package_managers/#hunter) `nlohmann_json`
+- <img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/vcpkg.png" height="20">&nbsp;[**vcpkg**](https://json.nlohmann.me/integration/package_managers/#vcpkg) `nlohmann-json`
+- [**cget**](https://json.nlohmann.me/integration/package_managers/#cget) `nlohmann/json`
+- <img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/swift.svg" height="20">&nbsp;[**Swift Package Manager**](https://json.nlohmann.me/integration/package_managers/#swift-package-manager) `nlohmann/json`
+- <img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/nuget.svg" height="20">&nbsp;[**Nuget**](https://json.nlohmann.me/integration/package_managers/#nuget) `nlohmann.json`
+- <img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/conda.svg" height="20">&nbsp;[**Conda**](https://json.nlohmann.me/integration/package_managers/#conda) `nlohmann_json`
+- <img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/macports.svg" height="20">&nbsp;[**MacPorts**](https://json.nlohmann.me/integration/package_managers/#macports) `nlohmann-json`
+- <img src="https://raw.githubusercontent.com/nlohmann/json/refs/heads/cleanup/docs/mkdocs/docs/images/package_managers/CPM.png" height="20">&nbsp;[**cpm.cmake**](https://json.nlohmann.me/integration/package_managers/#cpmcmake) `gh:nlohmann/json`
 
 The library is part of many package managers. See the [**documentation**](https://json.nlohmann.me/integration/package_managers/) for detailed descriptions and examples.
 
@@ -1382,7 +1372,7 @@ json = dependency('nlohmann_json', required: true)
 
 The class is licensed under the [MIT License](https://opensource.org/licenses/MIT):
 
-Copyright &copy; 2013-2024 [Niels Lohmann](https://nlohmann.me)
+Copyright &copy 2013-2024 [Niels Lohmann](https://nlohmann.me)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -1392,8 +1382,8 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 * * *
 
-- The class contains the UTF-8 Decoder from Bjoern Hoehrmann which is licensed under the [MIT License](https://opensource.org/licenses/MIT) (see above). Copyright &copy; 2008-2009 [Björn Hoehrmann](https://bjoern.hoehrmann.de/) <bjoern@hoehrmann.de>
-- The class contains a slightly modified version of the Grisu2 algorithm from Florian Loitsch which is licensed under the [MIT License](https://opensource.org/licenses/MIT) (see above). Copyright &copy; 2009 [Florian Loitsch](https://florian.loitsch.com/)
+- The class contains the UTF-8 Decoder from Bjoern Hoehrmann which is licensed under the [MIT License](https://opensource.org/licenses/MIT) (see above). Copyright &copy 2008-2009 [Björn Hoehrmann](https://bjoern.hoehrmann.de/) <bjoern@hoehrmann.de>
+- The class contains a slightly modified version of the Grisu2 algorithm from Florian Loitsch which is licensed under the [MIT License](https://opensource.org/licenses/MIT) (see above). Copyright &copy 2009 [Florian Loitsch](https://florian.loitsch.com/)
 - The class contains a copy of [Hedley](https://nemequ.github.io/hedley/) from Evan Nemerson which is licensed as [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 - The class contains parts of [Google Abseil](https://github.com/abseil/abseil-cpp) which is licensed under the [Apache 2.0 License](https://opensource.org/licenses/Apache-2.0).
 
@@ -1850,7 +1840,7 @@ Here is a related issue [#1924](https://github.com/nlohmann/json/issues/1924).
 
 - The code contains numerous debug **assertions** which can be switched off by defining the preprocessor macro `NDEBUG`, see the [documentation of `assert`](https://en.cppreference.com/w/cpp/error/assert). In particular, note [`operator[]`](https://json.nlohmann.me/api/basic_json/operator%5B%5D/) implements **unchecked access** for const objects: If the given key is not present, the behavior is undefined (think of a dereferenced null pointer) and yields an [assertion failure](https://github.com/nlohmann/json/issues/289) if assertions are switched on. If you are not sure whether an element in an object exists, use checked access with the [`at()` function](https://json.nlohmann.me/api/basic_json/at/). Furthermore, you can define `JSON_ASSERT(x)` to replace calls to `assert(x)`.
 - As the exact number type is not defined in the [JSON specification](https://tools.ietf.org/html/rfc8259.html), this library tries to choose the best fitting C++ number type automatically. As a result, the type `double` may be used to store numbers which may yield [**floating-point exceptions**](https://github.com/nlohmann/json/issues/181) in certain rare situations if floating-point exceptions have been unmasked in the calling code. These exceptions are not caused by the library and need to be fixed in the calling code, such as by re-masking the exceptions prior to calling library functions.
-- The code can be compiled without C++ **runtime type identification** features; that is, you can use the `-fno-rtti` compiler flag.
+- The code can be compiled without C++ **runtime type identification** features that is, you can use the `-fno-rtti` compiler flag.
 - **Exceptions** are used widely within the library. They can, however, be switched off with either using the compiler flag `-fno-exceptions` or by defining the symbol `JSON_NOEXCEPTION`. In this case, exceptions are replaced by `abort()` calls. You can further control this behavior by defining `JSON_THROW_USER` (overriding `throw`), `JSON_TRY_USER` (overriding `try`), and `JSON_CATCH_USER` (overriding `catch`). Note that `JSON_THROW_USER` should leave the current scope (e.g., by throwing or aborting), as continuing after it may yield undefined behavior. Note the explanatory [`what()`](https://en.cppreference.com/w/cpp/error/exception/what) string of exceptions is not available for MSVC if exceptions are disabled, see [#2824](https://github.com/nlohmann/json/discussions/2824).
 
 ## Execute unit tests
